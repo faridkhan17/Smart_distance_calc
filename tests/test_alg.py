@@ -9,7 +9,7 @@ import numpy as np
 
 
 def test_read_file():
-    df = read_file('/Users/faridkhan/Desktop/tumes/data')
+    df = read_file('data')
     assert(df.shape == (50, 11))
 
 
