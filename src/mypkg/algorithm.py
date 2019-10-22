@@ -24,10 +24,13 @@ def read_file(path):
     return df
 
 
-def fill_na(df):
-    df['alternativeAddress1_of_student'].fillna('No Address', inplace=True)
-    df['alternativeAddress2_of_student'].fillna('No Address', inplace=True)
-    df['specialties_of_practice'].fillna(0, inplace=True)
+list_col = ['alternativeAddress1_of_student', 'alternativeAddress2_of_student']
+
+
+def fill_na(df, list_col):
+    for col in list_col:
+        df[col].fillna('No Address', inplace=True)
+        # df[col].fillna(0, inplace=True)
     return df
 
 
@@ -70,16 +73,20 @@ def algorithm_1(df):
     return df
 
 
-def match_specs(df):
-    match = []
-    for i in range(len(df['favoriteSpecialties_of_student'])):
-        words = re.split(', |und ', df['favoriteSpecialties_of_student'][i])
+list_match = ['favoriteSpecialties_of_student', 'specialties_of_practice']
 
-        if df['specialties_of_practice'][i] == 0:
+
+def match_specs(df, list_match):
+    match = []
+    df[list_match[1]].fillna(0, inplace=True)
+    for i in range(len(df)):
+        words = re.split(', |und ', df[list_match[0]][i])
+
+        if df[list_match[1]][i] == 0:
             match.append(matching)
             continue
         else:
-            target = re.split(', |und ', df['specialties_of_practice'][i])
+            target = re.split(', |und ', df[list_match[1]][i])
         matching = len(list(set(words).intersection(target)))
         match.append(matching)
 
@@ -87,10 +94,13 @@ def match_specs(df):
     return df
 
 
-def assigning_weights(df):
+list_weights = ['timeDuration', 'matching', 'hasChildren']
+
+
+def assigning_weights(df, list_weights):
     weights = []
     for i in range(len(df)):
-        weight = (-df['timeDuration'][i]) + (df['matching'][i] * 100) + (df['hasChildren'][i] * 100)
+        weight = (-df[list_weights[0]][i]) + (df[list_weights[1]][i] * 100) + (df[list_weights[2]][i] * 100)
         weights.append(weight)
 
     df['weights'] = weights
