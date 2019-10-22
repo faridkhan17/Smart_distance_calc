@@ -5,6 +5,7 @@ python:
 
 install: 
  - pip install -e .
+ - pip install googlemaps
  - pip install pandas
  - pip install numpy
 
