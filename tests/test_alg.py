@@ -7,11 +7,6 @@ from mypkg.algorithm import assigning_weights
 import pandas as pd
 import numpy as np
 
-'''
-def test_read_file():
-    df = read_file('data')
-    assert(df.shape == (50, 11))
-'''
 
 def test_fill_na():
     mock_df = pd.DataFrame(data={'foo': ['aaaa', 'bbb', np.nan], 'boo': ['aaaa', 'dd', 'e']})
