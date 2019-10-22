@@ -4,8 +4,7 @@ python:
  - "3.6"
 
 install: 
-  - pip install -e .
-  - pip install pandas
-  - pip install googlemaps
+ - pip install -e .
+ - pip install pandas
 
 script: pytest
