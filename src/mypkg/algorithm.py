@@ -32,7 +32,7 @@ def fill_na(df):
 
 
 def google_api(origins, destinations, travel):
-    gmaps = googlemaps.Client(key='AIzaSyBC3TUyWAsERoCp7wu3hfm8hossMgmVwLQ')
+    gmaps = googlemaps.Client(key='*******************************')
     return gmaps.distance_matrix(origins, destinations, mode=travel)["rows"][0]["elements"][0]["duration"]["text"]
 
 
