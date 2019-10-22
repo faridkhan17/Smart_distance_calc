@@ -3,6 +3,8 @@ language: python
 python:
  - "3.6"
 
-install: pip install -e .
+install: 
+  - pip install -e .
+  - pip install pandas
 
 script: pytest
