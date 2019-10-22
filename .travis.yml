@@ -6,5 +6,6 @@ python:
 install: 
   - pip install -e .
   - pip install pandas
+  - pip install googlemaps
 
 script: pytest
